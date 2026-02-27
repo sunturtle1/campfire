@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cnyjg8aloihu8"]
+
+[ext_resource type="Script" uid="uid://eb4jsx2oj4c3" path="res://scripts/artifact.gd" id="1_0lcuo"]
+
+[node name="Artifact" type="Area2D" unique_id=1385512844]
+script = ExtResource("1_0lcuo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2007828341]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1901512093]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=494464457]

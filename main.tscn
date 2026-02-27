@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bsamhpa1p580e"]
+
+[ext_resource type="PackedScene" uid="uid://ccoaqdioidrv7" path="res://scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cnyjg8aloihu8" path="res://scenes/artifact.tscn" id="2_0xm2m"]
+[ext_resource type="Shader" uid="uid://gcf6ypwrq1e" path="res://darkness.gdshader" id="3_h2yge"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
+shader = ExtResource("3_h2yge")
+shader_parameter/light_pos = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.2
+shader_parameter/softness = 0.15
+
+[node name="Main" type="Node2D" unique_id=1127460483]
+
+[node name="Player" parent="." unique_id=1158445378 instance=ExtResource("1_ig7tw")]
+
+[node name="Artifact" parent="." unique_id=1385512844 instance=ExtResource("2_0xm2m")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1720949049]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1741073212]
+material = SubResource("ShaderMaterial_1bvp3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -9.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
