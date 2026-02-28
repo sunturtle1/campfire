@@ -1,28 +1,40 @@
 extends CharacterBody2D
 
-const SPEED = 200.0
+const acc = 300
+const rot_speed = 2.5
+const friction = 0.98
+const brk_friction = 0.90
 var score = 0
 
 @onready var flashlight = $PointLight2D
-@onready var darkness = $".."/CanvasLayer/ColorRect
-
+@onready var darkness = get_tree().root.get_node("Main/CanvasLayer/ColorRect")
+@onready var anim = $Sprite2D
+func _ready() -> void:
+	print(darkness)
 func _physics_process(delta):
-	var direction = Vector2.ZERO
+	
 	
 	if Input.is_action_pressed("right"):
-		direction.x += 1
+		rotation += rot_speed * delta
+		anim.play("default")
 	if Input.is_action_pressed("left"):
-		direction.x -= 1
+		rotation -= rot_speed * delta
+		anim.play("default")
 	if Input.is_action_pressed("down"):
-		direction.y += 1
+		velocity *= brk_friction
+	else: 
+		velocity *= friction
 	if Input.is_action_pressed("up"):
-		direction.y -= 1
+		velocity += Vector2.UP.rotated(rotation) * acc * delta
+		anim.play("default")
+		
+	if velocity.length() > 20:
+		anim.play("default")
+	else:
+		anim.play("standstill")
 	
-	direction = direction.normalized()
-	velocity = direction * SPEED
 	move_and_slide()
 	
-	# Zseblámpa a kurzor felé forog
 	var mouse_pos = get_global_mouse_position()
 	flashlight.rotation = (mouse_pos - global_position).angle()
 
@@ -33,5 +45,7 @@ func collect_artifact():
 func _process(delta):
 	var viewport_size = get_viewport_rect().size
 	var mouse_pos = get_viewport().get_mouse_position()
-	var uv_pos = mouse_pos / viewport_size
+	var uv_pos =  Vector2(mouse_pos.x / viewport_size.x, mouse_pos.y / viewport_size.y)
+	
+	
 	darkness.material.set_shader_parameter("light_pos", uv_pos)

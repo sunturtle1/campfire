@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform vec2 light_pos = vec2(0.5, 0.5);  
-uniform float radius : hint_range(0.0, 1.0) = 0.02;
+uniform float radius : hint_range(0.0, 1.0) = 0.2;
 uniform float softness : hint_range(0.0, 1.0) = 0.15;
 
 void fragment() {

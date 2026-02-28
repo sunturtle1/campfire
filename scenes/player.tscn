@@ -1,8 +1,39 @@
 [gd_scene format=3 uid="uid://ccoaqdioidrv7"]
 
 [ext_resource type="Script" uid="uid://dntdhjlr87wsl" path="res://player.gd" id="1_dqkch"]
+[ext_resource type="Texture2D" uid="uid://bb815g62gm6cj" path="res://assets/subamarineanimate.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://bnohhugyiiq5n" path="res://assets/submarine.png" id="2_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://dy35nn3b1sanm" path="res://assets/feny.png" id="3_qhqgy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(0, 0, 70, 353)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+atlas = ExtResource("2_qhqgy")
+region = Rect2(70, 0, 70, 353)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tuyoq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg0r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qlg0r")
+}],
+"loop": true,
+"name": &"standstill",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(50, 217)
@@ -11,10 +42,10 @@ size = Vector2(50, 217)
 collision_mask = 2
 script = ExtResource("1_dqkch")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1517038742]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1748060550]
 position = Vector2(-4, -1)
 scale = Vector2(0.805, 0.805)
-texture = ExtResource("2_qlg0r")
+sprite_frames = SubResource("SpriteFrames_tuyoq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1925583667]
 position = Vector2(-3, 1.5)
