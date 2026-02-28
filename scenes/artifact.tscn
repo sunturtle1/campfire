@@ -1,12 +1,52 @@
 [gd_scene format=3 uid="uid://cnyjg8aloihu8"]
 
-[ext_resource type="Script" uid="uid://eb4jsx2oj4c3" path="res://scripts/artifact.gd" id="1_0lcuo"]
+[ext_resource type="Texture2D" uid="uid://b1ahpxoxg786p" path="res://assets/treasure_chest.png" id="1_0lcuo"]
+[ext_resource type="Script" uid="uid://d2c1bb7tk10fl" path="res://scenes/artifact.gd" id="1_7gita"]
 
-[node name="Artifact" type="Area2D" unique_id=1385512844]
-script = ExtResource("1_0lcuo")
+[sub_resource type="CircleShape2D" id="CircleShape2D_7gita"]
+radius = 20.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2007828341]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a37it"]
+atlas = ExtResource("1_0lcuo")
+region = Rect2(0, 0, 93, 80)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1901512093]
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7ewq"]
+atlas = ExtResource("1_0lcuo")
+region = Rect2(93, 0, 93, 80)
 
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=494464457]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yqln"]
+atlas = ExtResource("1_0lcuo")
+region = Rect2(186, 0, 93, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ue23"]
+animations = [{
+"frames": [{
+"duration": 2.4,
+"texture": SubResource("AtlasTexture_a37it")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7ewq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yqln")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Artifact" type="Area2D" unique_id=1523463840]
+collision_layer = 2
+script = ExtResource("1_7gita")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=898629610]
+shape = SubResource("CircleShape2D_7gita")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=396473866]
+sprite_frames = SubResource("SpriteFrames_2ue23")
+frame_progress = 0.46865708

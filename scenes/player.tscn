@@ -5,9 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://dy35nn3b1sanm" path="res://assets/feny.png" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
-size = Vector2(75, 75)
+size = Vector2(50, 217)
 
 [node name="Player" type="CharacterBody2D" unique_id=1158445378]
+collision_mask = 2
 script = ExtResource("1_dqkch")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1517038742]
@@ -16,7 +17,7 @@ scale = Vector2(0.805, 0.805)
 texture = ExtResource("2_qlg0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1925583667]
-position = Vector2(-0.5, 2.5)
+position = Vector2(-3, 1.5)
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=340236534]
