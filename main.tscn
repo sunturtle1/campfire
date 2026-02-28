@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d00uxvwk5cqvy" path="res://assets/surface.png" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://cphqxhtvegjkd" path="res://assets/szivtemp.png" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dfm7h16i7dcly" path="res://scenes/game_over.tscn" id="7_272bh"]
+[ext_resource type="AudioStream" uid="uid://dc5qr6ipe1ek1" path="res://assets/soundtracKlqegr.wav" id="8_5vw27"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("5_7mycd")
@@ -128,3 +129,7 @@ offset_left = -256.0
 offset_top = -107.0
 offset_right = 180.0
 offset_bottom = 120.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=365336587]
+stream = ExtResource("8_5vw27")
+autoplay = true
