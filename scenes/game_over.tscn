@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dfm7h16i7dcly"]
+
+[ext_resource type="Script" uid="uid://bv7cmadlmc5ph" path="res://scripts/game_over.gd" id="1_xeevv"]
+
+[node name="GameOver" type="Control" unique_id=886649726]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xeevv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=565617521]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 293.0
+offset_right = 787.0
+offset_bottom = 444.0
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=534654221]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER"
+
+[node name="EndScoreLabel" type="Label" parent="VBoxContainer" unique_id=76223530]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1678430870]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Retry"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

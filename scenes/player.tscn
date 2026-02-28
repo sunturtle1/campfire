@@ -36,10 +36,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
-size = Vector2(50, 217)
+size = Vector2(36, 177)
 
 [node name="Player" type="CharacterBody2D" unique_id=1158445378]
-collision_mask = 2
+collision_layer = 3
+collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_dqkch")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1748060550]
@@ -48,13 +50,14 @@ scale = Vector2(0.805, 0.805)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1925583667]
-position = Vector2(-3, 1.5)
+position = Vector2(-9, -47.5)
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=340236534]
-position_smoothing_enabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1887990661]
+visible = false
+position = Vector2(-5, -15)
 energy = 1.2
 texture = ExtResource("3_qhqgy")
 texture_scale = 3.0

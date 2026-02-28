@@ -13,6 +13,10 @@ func _ready():
 func _on_body_entered(body):
 	if body.name == "Player":
 		body.collect_artifact()
+		
+		sprite.play("default")
+		await get_tree().create_timer(0.5).timeout 
+		
 		queue_free()
 		
 func _process(delta):

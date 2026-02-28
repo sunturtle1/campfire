@@ -5,12 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cnyjg8aloihu8" path="res://scenes/artifact.tscn" id="2_0xm2m"]
 [ext_resource type="Shader" uid="uid://gcf6ypwrq1e" path="res://darkness.gdshader" id="3_h2yge"]
 [ext_resource type="Texture2D" uid="uid://d00uxvwk5cqvy" path="res://assets/surface.png" id="5_7mycd"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
-shader = ExtResource("3_h2yge")
-shader_parameter/light_pos = Vector2(0.5, 0.5)
-shader_parameter/radius = 0.050000002375
-shader_parameter/softness = 0.15
+[ext_resource type="Texture2D" uid="uid://cphqxhtvegjkd" path="res://assets/szivtemp.png" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://dfm7h16i7dcly" path="res://scenes/game_over.tscn" id="7_272bh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
 texture = ExtResource("5_7mycd")
@@ -67,33 +63,68 @@ texture = ExtResource("5_7mycd")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_272bh")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
+shader = ExtResource("3_h2yge")
+shader_parameter/light_pos = Vector2(0.5, 0.5)
+shader_parameter/player_pos = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.00800000038
+shader_parameter/softness = 0.15
+shader_parameter/player_radius = 0.05
+shader_parameter/aspect_ratio = Vector2(1.777, 1)
+shader_parameter/player_rotation = 0.0
+
 [node name="Main" type="Node2D" unique_id=1127460483]
 script = ExtResource("1_lquwl")
 
-[node name="Player" parent="." unique_id=1158445378 instance=ExtResource("1_ig7tw")]
-collision_mask = 1
+[node name="Player" parent="." unique_id=1158445378 groups=["player"] instance=ExtResource("1_ig7tw")]
 
 [node name="Artifact" parent="." unique_id=1385512844 instance=ExtResource("2_0xm2m")]
 position = Vector2(253, 32)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1720949049]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1741073212]
+[node name="TileMap" type="TileMap" parent="." unique_id=195026876]
+tile_set = SubResource("TileSet_5vw27")
+format = 2
+layer_0/z_index = -1
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=682010762]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2" unique_id=1741073212]
 z_index = 1
 material = SubResource("ShaderMaterial_1bvp3")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -3.0
-offset_top = 4.0
-offset_right = -3.0
-offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
 
-[node name="TileMap" type="TileMap" parent="." unique_id=195026876]
-tile_set = SubResource("TileSet_5vw27")
-collision_visibility_mode = 1
-format = 2
-layer_0/z_index = -1
+[node name="HeartContainer" type="HBoxContainer" parent="CanvasLayer2" unique_id=789079288]
+z_index = 10
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Heart" type="TextureRect" parent="CanvasLayer2/HeartContainer" unique_id=1784134698]
+layout_mode = 2
+texture = ExtResource("6_7mycd")
+
+[node name="Heart2" type="TextureRect" parent="CanvasLayer2/HeartContainer" unique_id=1994323018]
+layout_mode = 2
+texture = ExtResource("6_7mycd")
+
+[node name="Label" type="Label" parent="CanvasLayer2" unique_id=487441026]
+z_index = 9
+offset_left = 4.0
+offset_top = 40.0
+offset_right = 169.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 24
+text = "Collected treasure: 0"
+autowrap_mode = 2
+
+[node name="GameOver" parent="." unique_id=886649726 instance=ExtResource("7_272bh")]
+visible = false
+offset_left = -256.0
+offset_top = -107.0
+offset_right = 180.0
+offset_bottom = 120.0

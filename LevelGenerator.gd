@@ -17,6 +17,28 @@ func _ready():
 	apply_map()
 	spawn_artifacts()
 	spawn_player()
+	spawn_enemies()
+	
+func spawn_enemies():
+	var enemy_scene = preload("res://scenes/Enemy.tscn")
+	var floor_cells = tilemap.get_used_cells_by_id(0, 0, FLOOR_COORDS)
+	var center = Vector2i(MAP_WIDTH / 2, MAP_HEIGHT / 2)
+	
+	var spawned = 0
+	var attempts = 0
+	
+	while spawned < 3 and attempts < 100:
+		attempts += 1
+		var random_cell = floor_cells.pick_random()
+		var dist = random_cell.distance_to(center)
+		
+		if dist < 30:
+			continue
+		
+		var enemy = enemy_scene.instantiate()
+		enemy.global_position = tilemap.map_to_local(random_cell)
+		add_child(enemy)
+		spawned += 1
 
 func generate_map():
 	map = []
@@ -68,8 +90,9 @@ func apply_map():
 func spawn_artifacts():
 	var artifact_scene = preload("res://scenes/artifact.tscn")
 	var floor_cells = tilemap.get_used_cells_by_id(0, 0, FLOOR_COORDS)
-	
-	for i in range(20):
+	var numberofartifacts = randi() % 15 + 10
+	print(numberofartifacts)
+	for i in range(numberofartifacts):
 		var random_cell = floor_cells.pick_random()
 		var artifact = artifact_scene.instantiate()
 		artifact.global_position = tilemap.map_to_local(random_cell)
@@ -81,7 +104,5 @@ func spawn_player():
 	player.global_position = tilemap.map_to_local(center)
 	
 	var camera = player.get_node("Camera2D")
-	camera.limit_left = 0
-	camera.limit_top = 0
-	camera.limit_right = MAP_WIDTH * TILE_SIZE
-	camera.limit_bottom = MAP_HEIGHT * TILE_SIZE
+	camera.reset_smoothing()
+	print("limits set: ", camera.limit_left, " ", camera.limit_right)
